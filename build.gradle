@@ -8,19 +8,19 @@ repositories {
     mavenCentral()
 }
 
-def selenideVersion = "7.7.0",
+def selenideVersion = "6.15.0",
     restAssuredVersion = "5.5.0",
-    allureVersion = "2.21.0"
+    allureVersion = "2.19.0"
 
 allure {
     report {
-        version.set(allureVersion)
+        version.set("2.24.0")
     }
     adapter {
         aspectjWeaver.set(true)
         frameworks {
             junit5 {
-                adapterVersion.set(allureVersion)
+                adapterVersion.set("2.24.0")
             }
         }
     }
