@@ -58,7 +58,7 @@ public class DemoqaBooksShopTests extends TestBase {
 
         step("Обновление страницы и проверка UI", () -> {
             Selenide.refresh();
-            $(".rt-tbody").shouldBe(visible).shouldHave(text("No rows found"));
+            $(".rt-noData").shouldBe(visible).shouldHave(text("No rows found"));
         });
     }
 }
