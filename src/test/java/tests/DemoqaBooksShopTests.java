@@ -25,18 +25,20 @@ public class DemoqaBooksShopTests extends TestBase {
     @DisplayName("Удаление книги из профиля: проверка через API и UI")
     void deleteBookTest() {
         LoginResponseModel auth = step("Авторизация через API", AuthAPI::login);
+        String token = auth.getToken();
+        String userId = auth.getUserId();
 
-        step("Очистка коллекции пользователя", () -> {
-            BookAPI.deleteAllBooks(auth.getUserId(), auth.getToken());
-        });
+        step("Очистка коллекции пользователя", () ->
+                BookAPI.deleteAllBooks(token, userId)
+        );
 
-        step("Добавление книги через API", () -> {
-            BookAPI.addBook(auth.getUserId(), auth.getToken(), isbn);
-        });
+        step("Добавление книги через API", () ->
+                BookAPI.addBook(token, userId, isbn)
+        );
 
         step("Проверка, что книга добавлена через API", () -> {
-            UserBooksResponseModel books = BookAPI.getUserBooks(auth.getUserId(), auth.getToken());
-            List<BookModel> userBooks = books.getBooks();
+            UserBooksResponseModel booksResp = BookAPI.getUserBooks(token, userId);
+            List<BookModel> userBooks = booksResp.getBooks();
             assertThat(userBooks).extracting(BookModel::getIsbn).contains(isbn);
         });
 
@@ -45,18 +47,18 @@ public class DemoqaBooksShopTests extends TestBase {
             $("#userName-value").shouldHave(text(login));
         });
 
-        step("Удаление книги через API", () -> {
-            BookAPI.deleteBook(auth.getUserId(),auth.getToken(), isbn);
-        });
+        step("Удаление книги через API", () ->
+                BookAPI.deleteBook(token, userId, isbn)
+        );
 
         step("Проверка через API, что книга удалена", () -> {
-            UserBooksResponseModel books = BookAPI.getUserBooks(auth.getUserId(), auth.getToken());
-            assertThat(books.getBooks()).noneMatch(book -> book.getIsbn().equals(isbn));
+            UserBooksResponseModel booksResp = BookAPI.getUserBooks(token, userId);
+            assertThat(booksResp.getBooks()).noneMatch(b -> b.getIsbn().equals(isbn));
         });
 
         step("Обновление страницы и проверка UI", () -> {
             Selenide.refresh();
-            $(".rt-noData").shouldBe(visible).shouldHave(text("No rows found"));
+            $(".rt-tbody").shouldBe(visible).shouldHave(text("No rows found"));
         });
     }
 }
