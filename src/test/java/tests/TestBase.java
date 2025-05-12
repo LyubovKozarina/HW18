@@ -23,7 +23,7 @@ public class TestBase {
 
 
         Configuration.browser = System.getProperty("browser", "chrome");
-        Configuration.browserVersion = System.getProperty("browserVersion", "125.0");
+        Configuration.browserVersion = System.getProperty("browserVersion", "127.0");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.of(

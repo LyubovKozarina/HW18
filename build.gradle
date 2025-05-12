@@ -10,17 +10,17 @@ repositories {
 
 def selenideVersion = "6.15.0",
     restAssuredVersion = "5.5.0",
-    allureVersion = "2.19.0"
+    allureVersion = "2.24.0"
 
 allure {
     report {
-        version.set("2.24.0")
+        version.set(allureVersion)
     }
     adapter {
         aspectjWeaver.set(true)
         frameworks {
             junit5 {
-                adapterVersion.set("2.24.0")
+                adapterVersion.set(allureVersion)
             }
         }
     }
