@@ -1,7 +1,7 @@
 package tests;
 
 import api.AuthAPI;
-import api.BookAPI;
+import api.BooksAPI;
 import com.codeborne.selenide.Selenide;
 import helpers.WithLogin;
 import models.BookModel;
@@ -29,15 +29,15 @@ public class DemoqaBooksShopTests extends TestBase {
         String userId = auth.getUserId();
 
         step("Очистка коллекции пользователя", () ->
-                BookAPI.deleteAllBooks(token, userId)
+                BooksAPI.deleteAllBooks(token, userId)
         );
 
         step("Добавление книги через API", () ->
-                BookAPI.addBook(token, userId, isbn)
+                BooksAPI.addBook(token, userId, isbn)
         );
 
         step("Проверка, что книга добавлена через API", () -> {
-            UserBooksResponseModel booksResp = BookAPI.getUserBooks(token, userId);
+            UserBooksResponseModel booksResp = BooksAPI.getUserBooks(token, userId);
             List<BookModel> userBooks = booksResp.getBooks();
             assertThat(userBooks).extracting(BookModel::getIsbn).contains(isbn);
         });
@@ -48,11 +48,11 @@ public class DemoqaBooksShopTests extends TestBase {
         });
 
         step("Удаление книги через API", () ->
-                BookAPI.deleteBook(token, userId, isbn)
+                BooksAPI.deleteBook(token, userId, isbn)
         );
 
         step("Проверка через API, что книга удалена", () -> {
-            UserBooksResponseModel booksResp = BookAPI.getUserBooks(token, userId);
+            UserBooksResponseModel booksResp = BooksAPI.getUserBooks(token, userId);
             assertThat(booksResp.getBooks()).noneMatch(b -> b.getIsbn().equals(isbn));
         });
 

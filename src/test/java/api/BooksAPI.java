@@ -4,9 +4,9 @@ import io.restassured.response.Response;
 import models.UserBooksResponseModel;
 
 import static io.restassured.RestAssured.given;
-import static specs.BookSpec.*;
+import static specs.BooksSpec.*;
 
-public class BookAPI {
+public class BooksAPI {
 
     public static void deleteAllBooks(String token, String userId) {
         given(request)
@@ -15,7 +15,7 @@ public class BookAPI {
                 .when()
                 .delete("/BookStore/v1/Books")
                 .then()
-                .spec(response204);
+                .spec(responseSpec(204));
     }
 
     public static void addBook(String token, String userId, String isbn) {
@@ -28,7 +28,7 @@ public class BookAPI {
                 .when()
                 .post("/BookStore/v1/Books")
                 .then()
-                .spec(response201);
+                .spec(responseSpec(201));
     }
 
     public static void deleteBook(String token, String userId, String isbn) {
@@ -41,7 +41,7 @@ public class BookAPI {
                 .when()
                 .delete("/BookStore/v1/Book")
                 .then()
-                .spec(response204);
+                .spec(responseSpec(204));
     }
 
     public static UserBooksResponseModel getUserBooks(String token, String userId) {
@@ -50,7 +50,7 @@ public class BookAPI {
                 .when()
                 .get("/Account/v1/User/" + userId)
                 .then()
-                .spec(response200)
+                .spec(responseSpec(200))
                 .extract().response();
 
         return response.as(UserBooksResponseModel.class);
