@@ -3,7 +3,7 @@ package api;
 import models.LoginRequestModel;
 import models.LoginResponseModel;
 import specs.LoginSpec;
-import tests.TestData;
+import utils.TestData;
 
 import static io.restassured.RestAssured.given;
 
