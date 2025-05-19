@@ -3,14 +3,16 @@ package api;
 import models.LoginRequestModel;
 import models.LoginResponseModel;
 import specs.LoginSpec;
-import tests.TestData;
+
 
 import static io.restassured.RestAssured.given;
+import static tests.TestData.login;
+import static tests.TestData.password;
 
 public class AuthAPI{
 
     public static LoginResponseModel login() {
-        LoginRequestModel request = new LoginRequestModel(TestData.login,TestData.password);
+        LoginRequestModel request = new LoginRequestModel(login,password);
         return
                 given(LoginSpec.request)
                         .body(request)
