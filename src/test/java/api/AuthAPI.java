@@ -7,12 +7,11 @@ import tests.TestData;
 
 
 import static io.restassured.RestAssured.given;
-import static tests.TestData.*;
 
 public class AuthAPI{
 
     public static LoginResponseModel login() {
-        LoginRequestModel request = new LoginRequestModel(USERNAME,PASSWORD);
+        LoginRequestModel request = new LoginRequestModel(TestData.USERNAME,TestData.PASSWORD);
         return
                 given(LoginSpec.request)
                         .body(request)
