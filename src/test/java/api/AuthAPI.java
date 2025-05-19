@@ -6,13 +6,12 @@ import specs.LoginSpec;
 
 
 import static io.restassured.RestAssured.given;
-import static tests.TestData.login;
-import static tests.TestData.password;
+import static tests.TestData.*;
 
 public class AuthAPI{
 
     public static LoginResponseModel login() {
-        LoginRequestModel request = new LoginRequestModel(login,password);
+        LoginRequestModel request = new LoginRequestModel(login_demoqa,password_demoqa);
         return
                 given(LoginSpec.request)
                         .body(request)
