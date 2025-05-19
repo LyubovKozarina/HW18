@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 public class AuthAPI{
 
     public static LoginResponseModel login() {
-        LoginRequestModel request = new LoginRequestModel(TestData.login,TestData.password);
+        LoginRequestModel request = new LoginRequestModel(TestData.getLogin(),TestData.getPassword());
         return
                 given(LoginSpec.request)
                         .body(request)
