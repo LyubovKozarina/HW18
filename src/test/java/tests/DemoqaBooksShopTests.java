@@ -44,7 +44,7 @@ public class DemoqaBooksShopTests extends TestBase {
 
         step("Переход на страницу профиля", () -> {
             open("/profile");
-            $("#userName-value").shouldHave(text(TestData.getLogin()));
+            $("#userName-value").shouldHave(text(login));
         });
 
         step("Удаление книги через API", () ->
