@@ -3,6 +3,7 @@ package api;
 import models.LoginRequestModel;
 import models.LoginResponseModel;
 import specs.LoginSpec;
+import tests.TestData;
 
 
 import static io.restassured.RestAssured.given;
@@ -11,7 +12,7 @@ import static tests.TestData.*;
 public class AuthAPI{
 
     public static LoginResponseModel login() {
-        LoginRequestModel request = new LoginRequestModel(DEMOQA_LOGIN,DEMOQA_PASSWORD);
+        LoginRequestModel request = new LoginRequestModel(USERNAME,PASSWORD);
         return
                 given(LoginSpec.request)
                         .body(request)
