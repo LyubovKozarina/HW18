@@ -11,7 +11,7 @@ import static tests.TestData.*;
 public class AuthAPI{
 
     public static LoginResponseModel login() {
-        LoginRequestModel request = new LoginRequestModel(login_demoqa,password_demoqa);
+        LoginRequestModel request = new LoginRequestModel(DEMOQA_LOGIN,DEMOQA_PASSWORD);
         return
                 given(LoginSpec.request)
                         .body(request)
