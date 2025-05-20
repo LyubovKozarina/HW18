@@ -5,7 +5,6 @@ import models.LoginResponseModel;
 import specs.LoginSpec;
 import tests.TestData;
 
-
 import static io.restassured.RestAssured.given;
 
 public class AuthAPI{

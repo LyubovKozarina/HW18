@@ -16,7 +16,8 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
-import static tests.TestData.*;
+import static tests.TestData.USERNAME;
+import static tests.TestData.isbn;
 
 public class DemoqaBooksShopTests extends TestBase {
 
